@@ -117,6 +117,15 @@ export function playlistIdFrom(value) {
   return match?.[1] || (value.trim().match(/^[a-zA-Z0-9]{15,}$/)?.[0] ?? null)
 }
 
+export function playlistIdsFrom(value) {
+  return [...new Set(
+    value
+      .split(/[\s,]+/)
+      .map((item) => playlistIdFrom(item))
+      .filter(Boolean),
+  )]
+}
+
 async function spotifyFetch(path, token, options = {}) {
   const response = await fetch(path.startsWith('http') ? path : `${API_URL}${path}`, {
     ...options,
@@ -152,6 +161,7 @@ export async function getPlaylist(playlistId, token) {
       title: extractSongTitle(track.name),
       artist: track.artists?.map((artist) => artist.name).join(', ') || 'Unknown artist',
       album: track.album?.name || '',
+      year: track.album?.release_date?.slice(0, 4) || '',
       art: track.album?.images?.[0]?.url || '',
       duration: track.duration_ms,
       spotifyUrl: track.external_urls?.spotify,

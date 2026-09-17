@@ -17,10 +17,28 @@ export function normalizeTitle(value) {
 // Keep the actual title while removing common Spotify metadata appended after a dash.
 // This is deliberately conservative so titles that genuinely contain a dash stay intact.
 export function extractSongTitle(value) {
-  return value
-    .normalize('NFKC')
-    .replace(/\s+[-–—]\s+(?=(?:เพลงประกอบ(?:ภาพยนตร์|ละคร|ซีรีส์|เกม)?|จาก(?:ภาพยนตร์|ละคร|ซีรีส์)|soundtrack\b|original\s+(?:motion\s+picture|soundtrack)\b|from\b|ost\b|theme\b|opening\b|ending\b|remaster(?:ed)?\b|live\b|acoustic\b|version\b|edit\b|mix\b|feat(?:uring)?\b|ft\b)).*$/iu, '')
-    .trim()
+  let title = value.normalize('NFKC').trim()
+
+  // English title + franchise/context + translated title, e.g.
+  // "My War (Attack on Titan) - 僕の戦争".
+  title = title.replace(/^(.+?)\s*\([^)]*\)\s*[-–—]\s*(?=[^\n]*[\u3040-\u30ff\u3400-\u9fff]).*$/u, '$1')
+
+  // Spotify frequently appends editorial context after a dash. Match the
+  // marker anywhere in that suffix so festival names before "Theme Song"
+  // are handled too.
+  title = title.replace(
+    /\s+[-–—]\s+(?=[^\n]*(?:เพลงประกอบ(?:ภาพยนตร์|ละคร|ซีรีส์|เกม)?|จาก(?:ภาพยนตร์|ละคร|ซีรีส์)|soundtrack\b|original\s+(?:motion\s+picture|soundtrack)\b|from\b|ost\b|theme(?:\s+song)?\b|opening\b|ending\b|remaster(?:ed)?\b|live\b|acoustic\b|version\b|edit\b|mix\b|feat(?:uring)?\b|ft\b)).*$/iu,
+    '',
+  )
+
+  // Remove only recognized trailing annotations, preserving meaningful
+  // parentheses that are genuinely part of a title.
+  title = title.replace(
+    /\s*[([][^)\]]*(?:produced\s+by|feat(?:uring)?\.?|ft\.?|remix|mix|remaster(?:ed)?|version|edit|radio\s+edit|live|acoustic|instrumental|sped\s+up|slowed(?:\s+down)?)[^)\]]*[)\]]\s*$/iu,
+    '',
+  )
+
+  return title.trim()
 }
 
 function graphemes(value) {

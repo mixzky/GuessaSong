@@ -2,13 +2,13 @@ export const DEMO_PLAYLIST = {
   name: 'After Hours Radio',
   owner: 'Guess a Song',
   tracks: [
-    { id: 'demo-1', title: 'Midnight Drive', artist: 'The Night Owls', album: 'Neon Streets', color: '#ef6f3c', notes: [220, 277, 330, 415] },
-    { id: 'demo-2', title: 'Golden Hour', artist: 'June & The Sun', album: 'Slow Light', color: '#f3b33d', notes: [262, 330, 392, 330] },
-    { id: 'demo-3', title: 'Electric Heart', artist: 'Violet Arcade', album: 'Static Dreams', color: '#b35cff', notes: [196, 247, 294, 370] },
-    { id: 'demo-4', title: 'Ocean Eyes', artist: 'Coastline Club', album: 'Blue Again', color: '#4aa9c7', notes: [175, 220, 262, 349] },
-    { id: 'demo-5', title: 'Paper Planes', artist: 'Sunday Kids', album: 'Window Seat', color: '#83ad54', notes: [294, 370, 440, 370] },
-    { id: 'demo-6', title: 'Cherry Skies', artist: 'Marlow', album: 'Postcards', color: '#df5571', notes: [247, 311, 370, 466] },
-    { id: 'demo-7', title: 'Slow Motion', artist: 'Bedroom Cinema', album: 'Soft Focus', color: '#6d75d8', notes: [208, 262, 311, 392] },
+    { id: 'demo-1', title: 'Midnight Drive', artist: 'The Night Owls', album: 'Neon Streets', year: '2022', color: '#ef6f3c', notes: [220, 277, 330, 415] },
+    { id: 'demo-2', title: 'Golden Hour', artist: 'June & The Sun', album: 'Slow Light', year: '2021', color: '#f3b33d', notes: [262, 330, 392, 330] },
+    { id: 'demo-3', title: 'Electric Heart', artist: 'Violet Arcade', album: 'Static Dreams', year: '2024', color: '#b35cff', notes: [196, 247, 294, 370] },
+    { id: 'demo-4', title: 'Ocean Eyes', artist: 'Coastline Club', album: 'Blue Again', year: '2020', color: '#4aa9c7', notes: [175, 220, 262, 349] },
+    { id: 'demo-5', title: 'Paper Planes', artist: 'Sunday Kids', album: 'Window Seat', year: '2023', color: '#83ad54', notes: [294, 370, 440, 370] },
+    { id: 'demo-6', title: 'Cherry Skies', artist: 'Marlow', album: 'Postcards', year: '2019', color: '#df5571', notes: [247, 311, 370, 466] },
+    { id: 'demo-7', title: 'Slow Motion', artist: 'Bedroom Cinema', album: 'Soft Focus', year: '2022', color: '#6d75d8', notes: [208, 262, 311, 392] },
   ],
 }
 

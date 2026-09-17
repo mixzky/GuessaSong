@@ -64,3 +64,19 @@ test('extracts a Thai soundtrack label from a Spotify title', () => {
 test('keeps a legitimate dashed song title intact', () => {
   assert.equal(extractSongTitle('Love - Hate'), 'Love - Hate')
 })
+
+test('removes a trailing producer credit', () => {
+  assert.equal(extractSongTitle('KISS OF DEATH (Produced by HYDE)'), 'KISS OF DEATH')
+})
+
+test('extracts an English title before anime context and a Japanese alternate title', () => {
+  assert.equal(extractSongTitle('My War (Attack on Titan) - 僕の戦争'), 'My War')
+})
+
+test('removes remix and event theme context', () => {
+  assert.equal(extractSongTitle('SAKURA BURST (Naeleck Remix) - SACRA MUSIC FES. 2025 Theme Song'), 'SAKURA BURST')
+})
+
+test('removes a featured artist credit', () => {
+  assert.equal(extractSongTitle('ReawakeR (feat. Felix of Stray Kids)'), 'ReawakeR')
+})
